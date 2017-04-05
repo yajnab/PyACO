@@ -8,3 +8,4 @@ class PyACO:
 	for i in range(n_val):
 		for j in range(2):
 			bounds[1,j]=input("Enter");
+	phe = np.float64(input("Enter Pheromonoe Evaporation rate"));
