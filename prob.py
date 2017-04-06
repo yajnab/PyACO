@@ -14,7 +14,13 @@ def func(n_val, a):
 	cnstr[0] = #1st Constraints Goes Here
 	cnstr[1] = #2nd Constraint Goes Here
 	cnstr[2] = #3rd Constraint Goes Here
-
 	
+	'''Do Not Change any Code below'''
+	validate = int(1)
+	for i in range(n_cnstr):
+		if (cnstr[i] > 0):
+			validate = 0
 
+	result = [val, validate]
+	return result
 	
