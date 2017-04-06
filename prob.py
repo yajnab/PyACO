@@ -1,3 +1,9 @@
+'''
+ * Author - Yajnavalkya Bandyopadhyay
+ * email- 	yajnab@gmail.com
+ * Civil Engineering Student
+ * Techno India College of Technology
+'''
 import numpy as np #Import Numpy
 
 def func(n_val, a):
