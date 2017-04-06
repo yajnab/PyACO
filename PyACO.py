@@ -1,4 +1,5 @@
 import numpy as np
+import random
 class PyACO:
 	n_val = int(input("Enter the Number of Variables")); #Number of Variables for the Problem to be Optimized
 	maxiter = input("Enter the maximum Iterations"); #Maximum number of Iterations
@@ -20,3 +21,9 @@ class PyACO:
 
 		res_route = np.zeros(maxiter, dtype=np.float64); #Value Array for all the Routes
 		res_route_phe = np.zeros(maxiter, dtype=np.float64); #Pheromone Value Array for all the Routes
+
+		for rc in range(maxroute):
+			tval = np.zeroes(n_val, dtype=np.float64);
+
+			for i in range(n_val):
+				tval[i]=random.uniform(bounds[i,0],bounds[i,1])
