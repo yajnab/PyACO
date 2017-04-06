@@ -12,3 +12,11 @@ class PyACO:
 		for j in range(2):
 			bounds[1,j]=input("Enter");
 	phe = np.float64(input("Enter Pheromonoe Evaporation rate")); #Pheronome Evaporation Rate
+
+	res = np.zeros(maxiter, dtype=np.float64); #Value Array for all the iterations
+
+	#Code for the Solution generation
+	for gi in range(maxiter):
+
+		res_route = np.zeros(maxiter, dtype=np.float64); #Value Array for all the Routes
+		res_route_phe = np.zeros(maxiter, dtype=np.float64); #Pheromone Value Array for all the Routes
