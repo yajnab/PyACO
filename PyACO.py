@@ -7,6 +7,7 @@
 
 import numpy as np
 import random
+from prob import func
 class PyACO:
 	n_val = int(input("Enter the Number of Variables")); #Number of Variables for the Problem to be Optimized
 	maxiter = int(input("Enter the maximum Iterations")); #Maximum number of Iterations
@@ -34,3 +35,15 @@ class PyACO:
 
 			for i in range(n_val):
 				tval[i]=random.uniform(bounds[i,0],bounds[i,1])
+
+
+			result = func(tval) #Pass the generated Value to the problem
+			'''
+				result is a 3 column np array which is returned from the function from prob.py which carries the following information in its indexes
+				result[0] - Validation Value
+				result[1] - Value of the optimized result
+				result[3] - tval passed to it
+			'''
+			print(result[0])
+			print(result[1])
+			print(result[2])
