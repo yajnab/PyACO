@@ -9,8 +9,8 @@ import numpy as np
 import random
 class PyACO:
 	n_val = int(input("Enter the Number of Variables")); #Number of Variables for the Problem to be Optimized
-	maxiter = input("Enter the maximum Iterations"); #Maximum number of Iterations
-	maxroute = input("Enter the maximum amount of routes"); #Maximum number of route the ants can make
+	maxiter = int(input("Enter the maximum Iterations")); #Maximum number of Iterations
+	maxroute = int(input("Enter the maximum amount of routes")); #Maximum number of route the ants can make
 	'''
 	 bounds Array to Store bounds where bounds (n_val,0) is the lower limit of the variable and (n_val,1) is the upper bound
 	'''
