@@ -48,3 +48,5 @@ class PyACO:
 				print("\n",result[0])
 				print("\n",result[1])
 				print("\n",result[2])
+
+				m = float(str(round(result[1], 3)))*1000
