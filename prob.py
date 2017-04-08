@@ -7,19 +7,19 @@
 import numpy as np #Import Numpy
 
 def func(n_val, a):
-	x = np.ones(n_val, dtype=float64)
+	x = a
 
 
 	'''Change the part from here'''
 
-	val =  #Calculate the Value
+	val = 2*x[0] + 4*x[1]/x[0] + x[0]*x[1]*x[2]  #Calculate the Value
 
 	#Constraints goes here
 	n_cnstr = 3 #Number of Constraints
 	cnstr = np.ones(n_cnstr, dtype=np.float64) #Declare the constraints array
-	cnstr[0] = #1st Constraints Goes Here
-	cnstr[1] = #2nd Constraint Goes Here
-	cnstr[2] = #3rd Constraint Goes Here
+	cnstr[0] = x[0]*x[1] - 1 #1st Constraints Goes Here
+	cnstr[1] = 2*x[0] + x[1];#2nd Constraint Goes Here
+	cnstr[2] = x[2]-85#3rd Constraint Goes Here
 	
 	'''Do Not Change any Code below'''
 	validate = int(1)
