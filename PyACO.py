@@ -30,7 +30,7 @@ class PyACO:
 		res_route_phe = np.zeros(maxiter, dtype=np.float64); #Pheromone Value Array for all the Routes
 
 		for rc in range(maxroute):
-			tval = np.zeroes(n_val, dtype=np.float64);
+			tval = np.zeros(n_val, dtype=np.float64);
 
 			for i in range(n_val):
 				tval[i]=random.uniform(bounds[i,0],bounds[i,1])
