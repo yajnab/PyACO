@@ -6,7 +6,7 @@
 '''
 import numpy as np #Import Numpy
 
-def func(n_val, a):
+def func(a):
 	x = a
 
 
@@ -27,6 +27,6 @@ def func(n_val, a):
 		if (cnstr[i] < 0):
 			validate = 0
 
-	result = [val, validate]
+	result = [validate, val, a]
 	return result
 	
