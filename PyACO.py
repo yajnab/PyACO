@@ -44,6 +44,7 @@ class PyACO:
 				result[1] - Value of the optimized result
 				result[3] - tval passed to it
 			'''
-			print(result[0])
-			print(result[1])
-			print(result[2])
+			if(result[0] == 1):  #Only Validated Result to be printed
+				print("\n",result[0])
+				print("\n",result[1])
+				print("\n",result[2])
