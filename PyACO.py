@@ -24,6 +24,8 @@ class PyACO:
 
 	res = np.zeros(maxiter, dtype=np.float64); #Value Array for all the iterations
 
+	min_res = np.array() #Global Optimized Value array
+	gstr = 0 #Counitng for initial value for minimum feed
 	#Code for the Solution generation
 	for gi in range(maxiter):
 
