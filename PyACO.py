@@ -24,13 +24,16 @@ class PyACO:
 
 	res = np.zeros(maxiter, dtype=np.float64); #Value Array for all the iterations
 
-	min_res = np.array() #Global Optimized Value array
+	min_res = np.array([]) #Global Optimized Value array
 	gstr = 0 #Counitng for initial value for minimum feed
 	#Code for the Solution generation
 	for gi in range(maxiter):
 
 		res_route = np.zeros(maxiter, dtype=np.float64); #Value Array for all the Routes
 		res_route_phe = np.zeros(maxiter, dtype=np.float64); #Pheromone Value Array for all the Routes
+
+		route_min = np.array([])
+		cstr =0 #Counter for Validated first input
 
 		for rc in range(maxroute):
 			tval = np.zeros(n_val, dtype=np.float64);
@@ -40,6 +43,7 @@ class PyACO:
 
 
 			result = func(tval) #Pass the generated Value to the problem
+
 			'''
 				result is a 3 column np array which is returned from the function from prob.py which carries the following information in its indexes
 				result[0] - Validation Value
@@ -47,8 +51,17 @@ class PyACO:
 				result[3] - tval passed to it
 			'''
 			if(result[0] == 1):  #Only Validated Result to be printed
-				print("\n",result[0])
-				print("\n",result[1])
-				print("\n",result[2])
+				#print("\n",result[0])
+				#print("\n",result[1])
+				#print("\n",result[2])
 
 				m = float(str(round(result[1], 3)))*1000
+				if (cstr==0):
+					cstr += 1
+					route_min = result
+					route_min.append([1])
+					if(gstr==0):
+						min_res = route_min
+						gstr +=1
+		print("\n Minimum Route",route_min)
+	print("\n Minimum result",min_res)
