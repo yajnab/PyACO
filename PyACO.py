@@ -12,6 +12,8 @@ class PyACO:
 	n_val = int(input("Enter the Number of Variables")); #Number of Variables for the Problem to be Optimized
 	maxiter = int(input("Enter the maximum Iterations")); #Maximum number of Iterations
 	maxroute = int(input("Enter the maximum amount of routes")); #Maximum number of route the ants can make
+	phe = float(input("Enter the Pheromone Evaporation Rate")); #Pheromone Evaporation Rate
+
 	'''
 	 bounds Array to Store bounds where bounds (n_val,0) is the lower limit of the variable and (n_val,1) is the upper bound
 	'''
@@ -20,20 +22,50 @@ class PyACO:
 	for i in range(n_val):
 		for j in range(2):
 			bounds[i,j]=input("Enter");
-	phe = np.float64(input("Enter Pheromonoe Evaporation rate")); #Pheronome Evaporation Rate
 
-	res = np.zeros(maxiter, dtype=np.float64); #Value Array for all the iterations
+	''' Class iterinfo is introduced to carry the best optimized value among the iterations
+		Contains 2 elements
+		1. value - Value
+		2. xval - Array of Generated Number
+	'''
 
-	min_res = np.array([]) #Global Optimized Value array
+	class iterinfo:
+		def __init__(self, **kwds):
+			self.__dict__.update(kwds)
+
+	min_res =None #Variable for Accessing iterinfo class
+
 	gstr = 0 #Counitng for initial value for minimum feed
 	#Code for the Solution generation
 	for gi in range(maxiter):
 
-		res_route = np.zeros(maxiter, dtype=np.float64); #Value Array for all the Routes
-		res_route_phe = np.zeros(maxiter, dtype=np.float64); #Pheromone Value Array for all the Routes
+		'''
+			class routeinfo is introduced to handle each and every successful values generated satisfying the constraints
+			which will have the 3 elements
+			1. value - will carry the value
+			2. xval - Will carry the Array of Number Generated
+			3. ph - Pheromone Count
 
-		route_min = np.array([])
-		cstr =0 #Counter for Validated first input
+			Class minv is introduced to handle the position, value and the variable value of the minimum instance
+			Elements are
+			1. value - Contain the Value
+			2. ps - Contain the position respect to the cstr , i.e the variable introduced for counter for Validated results
+		'''
+
+		class routeinfo:
+			def __init__(self, **kwds):
+				self.__dict__.update(kwds)
+		route = {} #Array for Accessing Class routeinfo
+
+		class minv:
+			def __init__(self, **kwds):
+				self.__dict__.update(kwds)
+
+
+
+		mins = None #Variable for Accessing Class minv
+
+		cstr =int(0) #Counter for Validated first input
 
 		for rc in range(maxroute):
 			tval = np.zeros(n_val, dtype=np.float64);
@@ -57,11 +89,22 @@ class PyACO:
 
 				m = float(str(round(result[1], 3)))*1000
 				if (cstr==0):
+					route[0] = routeinfo(value=m, xval=result[3], ph=1)
+					mins = minv(value=m, ps=cstr)
 					cstr += 1
-					route_min = result
-					route_min.append([1])
 					if(gstr==0):
-						min_res = route_min
+						min_res = iterinfo(value=m, xval=result[3])
 						gstr +=1
-		print("\n Minimum Route",route_min)
-	print("\n Minimum result",min_res)
+				else:
+					l1=0
+					for lc in range(cstr):
+						if(float(str(round(res_route[lc], 3)))*1000==m):
+							l1+=1
+							break
+					if (l1==0):
+						route[cstr]=routeinfo(value=m, xval=result[3], ph=1)
+
+						if(route[mins.ps].value<route[cstr].value): #If the minimum Value of the iteration is smaller than Generated value then update the Minimum Value
+							phn=route[mins.ps].ph*(1-phe)+1;
+							route[mins.ps]=routeinfo(value=m, xval=result[3], ph=phn)
+		print(route[mins.ps].value);
