@@ -98,7 +98,7 @@ class PyACO:
 				else:
 					l1=0
 					for lc in range(cstr):
-						if(float(str(round(res_route[lc], 3)))*1000==m):
+						if(float(str(round(route[lc].value, 3)))*1000==m):
 							l1+=1
 							break
 					if (l1==0):
