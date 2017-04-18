@@ -80,7 +80,7 @@ class PyACO:
 				result is a 3 column np array which is returned from the function from prob.py which carries the following information in its indexes
 				result[0] - Validation Value
 				result[1] - Value of the optimized result
-				result[3] - tval passed to it
+				result[2] - tval passed to it
 			'''
 			if(result[0] == 1):  #Only Validated Result to be printed
 				#print("\n",result[0])
@@ -89,11 +89,11 @@ class PyACO:
 
 				m = float(str(round(result[1], 3)))*1000
 				if (cstr==0):
-					route[0] = routeinfo(value=m, xval=result[3], ph=1)
+					route[0] = routeinfo(value=m, xval=result[2], ph=1)
 					mins = minv(value=m, ps=cstr)
 					cstr += 1
 					if(gstr==0):
-						min_res = iterinfo(value=m, xval=result[3])
+						min_res = iterinfo(value=m, xval=result[2])
 						gstr +=1
 				else:
 					l1=0
@@ -102,9 +102,9 @@ class PyACO:
 							l1+=1
 							break
 					if (l1==0):
-						route[cstr]=routeinfo(value=m, xval=result[3], ph=1)
+						route[cstr]=routeinfo(value=m, xval=result[2], ph=1)
 
 						if(route[mins.ps].value<route[cstr].value): #If the minimum Value of the iteration is smaller than Generated value then update the Minimum Value
 							phn=route[mins.ps].ph*(1-phe)+1;
-							route[mins.ps]=routeinfo(value=m, xval=result[3], ph=phn)
+							route[mins.ps]=routeinfo(value=m, xval=result[2], ph=phn)
 		print(route[mins.ps].value);
