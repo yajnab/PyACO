@@ -107,4 +107,10 @@ class PyACO:
 						if(route[mins.ps].value<route[cstr].value): #If the minimum Value of the iteration is smaller than Generated value then update the Minimum Value
 							phn=route[mins.ps].ph*(1-phe)+1;
 							route[mins.ps]=routeinfo(value=m, xval=result[2], ph=phn)
+						if(route[mins.ps].value>route[cstr].value):
+							route[cstr].ph=route[mins.ps].ph*(1-phe)+1
+							route[mins.ps].ph=1;
+							mins.ps=cstr;
+							mins.value=route[cstr].value;
+					cstr+=1
 		print(route[mins.ps].value);
