@@ -114,3 +114,7 @@ class PyACO:
 							mins.value=route[cstr].value;
 					cstr+=1
 		print(route[mins.ps].value);
+		if(mins.value<min_res.value):
+			min_res=iterinfo(value=mins.value, xval=route[mins.ps].xval)
+	print(min_res.value)
+	print(min_res.xval)
