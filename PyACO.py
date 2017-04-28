@@ -8,11 +8,21 @@
 import numpy as np
 import random
 from prob import func
-class PyACO:
-	n_val = int(input("Enter the Number of Variables")); #Number of Variables for the Problem to be Optimized
-	maxiter = int(input("Enter the maximum Iterations")); #Maximum number of Iterations
-	maxroute = int(input("Enter the maximum amount of routes")); #Maximum number of route the ants can make
-	phe = float(input("Enter the Pheromone Evaporation Rate")); #Pheromone Evaporation Rate
+
+
+'''
+	n_val = Number of Variables for the Problem to be Optimized
+	maxiter = Maximum number of Iterations
+	maxroute = Maximum number of route the ants can make
+	phe = Pheromone Evaporation Rate
+'''
+
+def PyACO(val, cnstr, n_val, maxiter, maxroute, phe):
+	n_cnstr = cnstr.size;
+	validate = int(1)
+	for i in range(n_cnstr):
+		if (cnstr[i] < 0):
+			validate = 0
 
 	'''
 	 bounds Array to Store bounds where bounds (n_val,0) is the lower limit of the variable and (n_val,1) is the upper bound
@@ -73,8 +83,7 @@ class PyACO:
 			for i in range(n_val):
 				tval[i]=random.uniform(bounds[i,0],bounds[i,1])
 
-
-			result = func(tval) #Pass the generated Value to the problem
+			result = calc(tval) #Pass the generated Value to the problem
 
 			'''
 				result is a 3 column np array which is returned from the function from prob.py which carries the following information in its indexes
@@ -118,3 +127,13 @@ class PyACO:
 			min_res=iterinfo(value=mins.value, xval=route[mins.ps].xval)
 	print(min_res.value)
 	print(min_res.xval)
+def calc(val, cnstr , tval):
+
+	n_cnstr = cnstr.size;
+	validate = int(1)
+	for i in range(n_cnstr):
+		if (cnstr[i] < 0):
+			validate = 0
+
+	result = [validate, val, a]
+	return result
