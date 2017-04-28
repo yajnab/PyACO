@@ -5,7 +5,7 @@
  * Techno India College of Technology
 '''
 import numpy as np #Import Numpy
-from PyACO import *
+from PyACO.PyACO import *
 class prob:
 
 	def func(x):
