@@ -7,23 +7,17 @@
 
 import numpy as np
 import random
-from prob import func
-
 
 '''
+	func = Function which will be evaluated for maximization or Minimization
+	cons = Constraint Functions
 	n_val = Number of Variables for the Problem to be Optimized
 	maxiter = Maximum number of Iterations
 	maxroute = Maximum number of route the ants can make
 	phe = Pheromone Evaporation Rate
 '''
 
-def PyACO(val, cnstr, n_val, maxiter, maxroute, phe):
-	n_cnstr = cnstr.size;
-	validate = int(1)
-	for i in range(n_cnstr):
-		if (cnstr[i] < 0):
-			validate = 0
-
+def PyACO(func, cons, n_val, maxiter, maxroute, phe):
 	'''
 	 bounds Array to Store bounds where bounds (n_val,0) is the lower limit of the variable and (n_val,1) is the upper bound
 	'''
@@ -83,7 +77,7 @@ def PyACO(val, cnstr, n_val, maxiter, maxroute, phe):
 			for i in range(n_val):
 				tval[i]=random.uniform(bounds[i,0],bounds[i,1])
 
-			result = calc(tval) #Pass the generated Value to the problem
+			result = calc(func, cons, tval) #Pass the generated Value to the problem
 
 			'''
 				result is a 3 column np array which is returned from the function from prob.py which carries the following information in its indexes
@@ -122,18 +116,20 @@ def PyACO(val, cnstr, n_val, maxiter, maxroute, phe):
 							mins.ps=cstr;
 							mins.value=route[cstr].value;
 					cstr+=1
-		print(route[mins.ps].value);
+		print("route[mins.ps].value",route[mins.ps].value);
 		if(mins.value<min_res.value):
 			min_res=iterinfo(value=mins.value, xval=route[mins.ps].xval)
-	print(min_res.value)
-	print(min_res.xval)
-def calc(val, cnstr , tval):
+	print("min_res.value",min_res.value)
+	print("min_res.xval",min_res.xval)
+def calc(func, cons , tval):
 
-	n_cnstr = cnstr.size;
+	val = func(tval)
 	validate = int(1)
+	cnstr=cons(tval)
+	n_cnstr = cnstr.size;
 	for i in range(n_cnstr):
 		if (cnstr[i] < 0):
 			validate = 0
 
-	result = [validate, val, a]
+	result = [validate, val, tval]
 	return result
