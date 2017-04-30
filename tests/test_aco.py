@@ -26,11 +26,7 @@ class prob:
 	maxiter=3
 	maxroute=10
 	phe=0.2
-	bounds = np.ones((n_val,2), dtype=np.float64) 
-	print("Enter the Lower and Upper bounds of each variable \n")
-	for i in range(n_val):
-		for j in range(2):
-			bounds[i,j]=input("Enter");
+	bounds = np.array([60,120],[60,120],[60,120])
 	m = PyACO(func, cons, n_val, bounds, maxiter, maxroute, phe)
 	print("Minimum Value is", m[0])
 	print("Variables are", m[1])
